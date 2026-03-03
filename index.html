@@ -3,40 +3,167 @@
 
 <head>
   <meta charset="UTF-8" />
-
-  <title>🔍 MataData</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔍 MetaData - Herramienta Forense</title>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="🔍 MataData - Herramienta Forense de Metadatos" />
+  <meta property="og:title" content="🔍 MetaData - Análisis Forense de Metadatos" />
   <meta property="og:description"
     content="Aplicación profesional para análisis, validación y sanitización de metadatos EXIF/XMP en imágenes con verificación de integridad MD5 y SHA-256." />
-  <meta property="og:url" content="https://pablitus666.github.io/MataData-Site/" />
-
-  <meta property="og:image"
-    content="https://pablitus666.github.io/MataData-Site/assets/og.png" />
-  <meta property="og:image:secure_url"
-    content="https://pablitus666.github.io/MataData-Site/assets/og.png" />
+  <meta property="og:url" content="https://pablitus666.github.io/Meta-Data---Site/" />
+  <meta property="og:image" content="https://pablitus666.github.io/Meta-Data---Site/assets/og.png" />
+  <meta property="og:image:secure_url" content="https://pablitus666.github.io/Meta-Data---Site/assets/og.png" />
   <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="2400" />
-  <meta property="og:image:height" content="1260" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Redirección SOLO para humanos -->
+  <style>
+    :root {
+      --primary: #0B3C49;
+      --accent: #3FA9C4;
+      --bg: #111E23;
+      --text: #EAF6F8;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .status-box {
+      border: 1px solid var(--accent);
+      padding: 2rem;
+      border-radius: 8px;
+      background: rgba(11, 60, 73, 0.4);
+      box-shadow: 0 0 20px rgba(63, 169, 196, 0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .loader {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--primary);
+      border-top: 3px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      color: var(--accent);
+    }
+
+    p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .scanning-line {
+      height: 2px;
+      background: var(--accent);
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: scan 3s linear infinite;
+      box-shadow: 0 0 10px var(--accent);
+      opacity: 0.5;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .btn:hover {
+      background: #EAF6F8;
+      box-shadow: 0 0 15px rgba(234, 246, 248, 0.5);
+    }
+  </style>
+
+  <!-- Redirección automática -->
   <script>
     if (!/bot|crawler|spider|crawling/i.test(navigator.userAgent)) {
-      window.location.replace("https://github.com/Pablitus666/Meta-Data");
+      setTimeout(() => {
+        window.location.replace("https://github.com/Pablitus666/Meta-Data");
+      }, 3000); // 3 segundos para mostrar el efecto
     }
   </script>
 </head>
 
 <body>
+  <div class="scanning-line"></div>
+  
+  <div class="container">
+    <div class="status-box">
+      <div class="loader"></div>
+      <h1>METADATA ANALYZER</h1>
+      <p id="status">INICIALIZANDO CONEXIÓN SEGURA...</p>
+      <a href="https://github.com/Pablitus666/Meta-Data" class="btn">Acceder Manualmente</a>
+    </div>
+  </div>
+
+  <script>
+    const statusText = [
+      "CARGANDO FIRMAS DIGITALES...",
+      "VERIFICANDO INTEGRIDAD...",
+      "SISTEMA LISTO.",
+      "REDIRECCIONANDO A REPOSITORIO..."
+    ];
+    let i = 0;
+    const statusElement = document.getElementById('status');
+    const interval = setInterval(() => {
+      if (i < statusText.length) {
+        statusElement.innerText = statusText[i++];
+      } else {
+        clearInterval(interval);
+      }
+    }, 700);
+  </script>
+
   <noscript>
     <meta http-equiv="refresh" content="0; url=https://github.com/Pablitus666/Meta-Data" />
   </noscript>
-
-  <p>Redirigiendo a MataData…</p>
 </body>
 
 </html>
